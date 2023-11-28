@@ -6,7 +6,7 @@ import Test from './screens/Test';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hey too</Text>
+      <Text>Yellos</Text>
       <Test />
     </View>
   );
