@@ -2,6 +2,7 @@
 // import { Pressable, View, Text, ScrollView, StyleSheet, FlatList, Button } from 'react-native';
 // App.js
 import React from 'react';
+import HomePage from "./Home";
 import { StyleSheet, View } from 'react-native';
 import Checkerboard from "../components/Board";
 // import ScoreBoard from "../components/ScoreBoard";
@@ -14,9 +15,11 @@ export default function App() {
   const opponentData = getUserData(); // Modify to get actual opponent data
 
   return (
+    
     <View style={styles.container}>
-      <View style={styles.scoreBoardTop}>
-
+      <NavBar />
+      {/* <View style={styles.scoreBoardTop}>
+  
         <PlayerScore
           score={0}
           profile={playerData}
@@ -31,7 +34,7 @@ export default function App() {
           profile={opponentData}
           isNPC={true}
         />
-      </View>
+      </View> */}
     </View>
   );
 }

@@ -1,6 +1,6 @@
 // Checkerboard.js
 import React from 'react';
-import { View, ImageBackground, StyleSheet } from 'react-native';
+import { View, ImageBackground, StyleSheet, TouchableHighlight} from 'react-native';
 
 const Checkerboard = () => {
   const rows = new Array(8).fill(null);
