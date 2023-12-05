@@ -1,10 +1,10 @@
-import react from "react";
+import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, TouchableHighlight} from 'react-native';
 
-export default function Settings(){
+export default function Scores(){
     return (
         <View style={styles.container}>
-            <Text>Settings</Text>
+            <Text>Scores</Text>
         </View>
     );
 };
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-});
+  });
