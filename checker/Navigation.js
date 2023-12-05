@@ -55,8 +55,6 @@ export default function Navigation(){
                                 </View>
                             )
                         }
-                    
-                    
                     }
                      />
                     <Tab.Screen 

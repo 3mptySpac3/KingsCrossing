@@ -33,6 +33,8 @@ const SPO = () => {
 
     );
 };
+export default SPO;
+
 const styles = StyleSheet.create({
     background: {
       flex: 1,
