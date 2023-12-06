@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from "./screens/Home";
+import Home from "./screens/HomePages/HomeManager";
 import Settings from "./screens/Settings";
 import Music from "./screens/Music";
 import Scores from "./screens/Scores";

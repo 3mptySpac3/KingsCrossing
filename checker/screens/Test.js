@@ -3,7 +3,7 @@
 // App.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import HomePage from "./Home";
+import HomePage from "./HomePages/Home";
 import Checkerboard from "../components/Board";
 // import ScoreBoard from "../components/ScoreBoard";
 import PlayerScore from "../components/PlayerScore";
