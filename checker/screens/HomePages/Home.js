@@ -1,14 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, ImageBackground, StyleSheet, TouchableHighlight } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import Slider from '@react-native-community/slider'
+import { FontAwesome, Entypo } from '@expo/vector-icons';
+
 
 // The 'setCurrentScreen' function should be passed from the parent component.
 const Home = ({ setCurrentScreen }) => {
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
+  const [volume, setVolume] = useState(50);
 
   return (
     <ImageBackground source={require('../../components/images/Bot.jpeg')} style={styles.background}>
-      <View style={styles.overlay}>
 
+      <View style={styles.overlay}>
+        <View style={styles.topBar}>
+        <TouchableHighlight
+          underlayColor="transparent"
+          onPress={() => setShowVolumeSlider(!showVolumeSlider)}>
+          <Entypo name="sound" size={24} color="white" />
+        </TouchableHighlight>
+        {showVolumeSlider && (
+          <Slider
+            style={styles.volumeSlider}
+            value={volume}
+            onValueChange={(val) => setVolume(val)}
+            minimumValue={0}
+            maximumValue={100}
+            minimumTrackTintColor="#FFFFFF"
+            maximumTrackTintColor="#000000"
+          />
+        )}
+      </View>
         <TouchableHighlight
           style={styles.buttonHome}
           onPress={() => setCurrentScreen('Home')}>
@@ -49,6 +71,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingRight: 20,
+  },
+  volumeSlider: {
+    width: 150,
+    marginLeft: 10,
+  },
   buttonHome: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -67,7 +100,8 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: 'yellow',
     borderRadius: 30,
-    elevation: 5, // for Android shadow
+    elevation: 5,
+    border: 1 ,
   },
   buttonText: {
     fontSize: 18,

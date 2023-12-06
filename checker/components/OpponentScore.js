@@ -2,16 +2,15 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const OpponentScore = ({ score, profile, isNPC }) => {
+const OpponentScore = ({ opponentIsNPC, opponentProfile, opponentScore }) => {
   return (
     <View style={styles.scoreSection}>
-      <Image source={{ uri: profile.picture }} style={styles.profilePic} />
-      <Text style={styles.userName}>{isNPC ? 'NPC' : profile.name}</Text>
-      <Text style={styles.score}>{score}</Text>
+      <Image source={{ uri: opponentProfile.picture }} style={styles.profilePic} />
+      <Text style={styles.userName}>{opponentIsNPC ? 'NPC' : opponentProfile.name}</Text>
+      <Text style={styles.score}>{opponentScore}</Text>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
 score: {
     fontSize: 20,

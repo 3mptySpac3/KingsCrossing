@@ -97,7 +97,7 @@ export default function Navigation(){
                             tabBarIcon: ({focused}) => (
                                 <View style={{alignItems: "center", justifyContent: "center"}}>
                                     <Entypo name="controller-play" size={24} color={focused ? '#16247d' : '#111'} />
-                                    <Text style={{fontSize: 12, color: "#16247d"}}>Game</Text>
+                                    <Text style={{fontSize: 12, color: "#16247d"}}>Continue</Text>
                                 </View>
                             )
                         }

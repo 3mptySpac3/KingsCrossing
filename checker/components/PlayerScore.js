@@ -2,15 +2,15 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const PlayerScore = ({ score, profile }) => {
+const PlayerScore = ({ playerScore, playerProfile }) => {
   return (
     <View style={styles.scoreSection}>
-      <Image source={{ uri: profile.picture }} style={styles.profilePic} />
-      <Text style={styles.userName}>{profile.name}</Text>
-      <Text style={styles.score}>{score}</Text>
+      <Image source={{ uri: playerProfile.picture }} style={styles.profilePic} />
+      <Text style={styles.userName}>{playerProfile.name}</Text>
+      <Text style={styles.score}>{playerScore}</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
     score: {

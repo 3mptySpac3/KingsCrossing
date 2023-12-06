@@ -20,6 +20,24 @@ const ScoreBoard = ({ playerScore, opponentScore, opponentIsNPC, playerProfile, 
     </View>
   );
 };
+const Opponent = ({ opponentIsNPC, opponentProfile, opponentScore }) => {
+  return (
+    <View style={styles.scoreSection}>
+      <Image source={{ uri: opponentProfile.picture }} style={styles.profilePic} />
+      <Text style={styles.userName}>{opponentIsNPC ? 'NPC' : opponentProfile.name}</Text>
+      <Text style={styles.score}>{opponentScore}</Text>
+    </View>
+  );
+};
+const User = ({ playerScore, playerProfile }) => {
+  return (
+    <View style={styles.scoreSection}>
+      <Image source={{ uri: playerProfile.picture }} style={styles.profilePic} />
+      <Text style={styles.userName}>{playerProfile.name}</Text>
+      <Text style={styles.score}>{playerScore}</Text>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   scoreBoard: {
@@ -49,5 +67,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-export default ScoreBoard;
+export default Opponent; 
+export {User};
