@@ -13,10 +13,10 @@ export default function MainGame({setCurrentScreen, setDifficulty}){
     const opponentData = getUserData(); 
   
     return (
+        <ImageBackground source={require('../components/images/mossy.jpeg')} style={styles.background}>
+
         <View style={styles.container}>
-                        <ImageBackground source={require('../components/images/R.gif')} style={styles.head}
-    imageStyle={{ borderRadius: 30 }} // Add this line to round the corners
-    >
+            <ImageBackground source={require('../components/images/R.gif')} style={styles.head} imageStyle={{ borderRadius: 30 }}>
                 <TouchableHighlight 
                 activeOpacity={1}
                 style={styles.buttonHome}
@@ -42,15 +42,19 @@ export default function MainGame({setCurrentScreen, setDifficulty}){
                 />
             </View>
         </View>
+        </ImageBackground>
     );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+    background: {
+        flex: 1,
+        resizeMode: 'cover', // or 'stretch'
+    },
+    
+    container: {
     marginTop: 25,
-    backgroundColor: '#fff',
     alignItems: 'center',
-  },
+    },
   head: {
     padding: 10,
     justifyContent: 'left',
