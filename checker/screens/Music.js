@@ -5,14 +5,14 @@ import Slider from '@react-native-community/slider';
 
 export default function App() {
   const [sound, setSound] = useState();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true); // Set to true to play automatically
   const [duration, setDuration] = useState(0);
   const [position, setPosition] = useState(0);
 
   async function loadSound() {
     const { sound, status } = await Audio.Sound.createAsync(
       require('../assets/Jack_Harlow_LOM.mp3'),
-      { shouldPlay: false }
+      { shouldPlay: true, isLooping: true } // Set shouldPlay and isLooping to true
     );
     setSound(sound);
     setDuration(status.durationMillis);
@@ -50,7 +50,7 @@ export default function App() {
       sound.setOnPlaybackStatusUpdate((status) => {
         if (status.isLoaded) {
           setPosition(status.positionMillis);
-          if (status.didJustFinish) {
+          if (status.didJustFinish && !status.isLooping) {
             setIsPlaying(false);
           }
         }

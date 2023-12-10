@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adjust the opacity as per your design
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 200,
     height: 60,
-    backgroundColor: 'yellow',
+    backgroundColor: '#FFC107',
     borderRadius: 30,
     elevation: 5, // for Android shadow
   },
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     width: 200,
     height: 60,
-    backgroundColor: 'yellow',
+    backgroundColor: '#FFC107',
     borderRadius: 30,
     elevation: 5,
     border: 1 ,

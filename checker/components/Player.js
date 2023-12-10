@@ -1,10 +1,12 @@
 // Player.js
-import React from 'react';
+import {React, useState} from 'react';
 import { View, StyleSheet } from 'react-native';
 
 const Player = ({ isPromoted }) => {
+  const [color, setColor] = useState(styles.piece); 
+  const pieceStyle = isPromoted ? [styles.piece, styles.promoted] : styles.piece;
   return (
-    <View style={[styles.piece, isPromoted && styles.promoted]} />
+    <View style={pieceStyle} />
   );
 };
 
@@ -18,6 +20,7 @@ const styles = StyleSheet.create({
   promoted: {
     borderWidth: 2,
     borderColor: 'black',
+    backgroundImage: 'radial-gradient(red, yellow)'
   },
 });
 

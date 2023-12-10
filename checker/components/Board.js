@@ -3,11 +3,19 @@ import React, { useState } from 'react';
 import { View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import Player from './Player';
 import Opponent from './Opponent';
+import PlayerScore from './PlayerScore';
+import OpponentScore from './OpponentScore';
+import { getUserData } from "./Users"
 
 const Checkerboard = () => {
   // Initialize the board
   const [board, setBoard] = useState(initializeBoard());
   const [selectedPiece, setSelectedPiece] = useState(null);
+  // setting up players scores 
+  const [playerScore, setPlayerScore] = useState(0);
+  const [opponentScore, setOpponentScore] = useState(0);
+  const playerData = getUserData();
+  const opponentData = getUserData(); 
 
   // Function to initialize the board with players and opponents
   function initializeBoard() {
@@ -32,18 +40,64 @@ const Checkerboard = () => {
     if (selectedPiece) {
       movePiece(selectedPiece.row, selectedPiece.col, row, col);
       setSelectedPiece(null);
-    } else if (board[row][col]) {
+    }
+     else if (board[row][col]) {
       setSelectedPiece({ row, col });
+    }
+      // Checking for promotion
+    if ((board[row][col] === 'player' && row === 0) || (board[row][col] === 'opponent' && row === 7)) {
+      // Promote the piece
     }
   };
 
   // Move piece from one cell to another
+//   const movePiece = (fromRow, fromCol, toRow, toCol) => {
+//     // Check if the move is diagonal
+//     if (Math.abs(fromRow - toRow) === Math.abs(fromCol - toCol)) {
+//         let newBoard = [...board];
+//         // Check for hops
+//         if (Math.abs(fromRow - toRow) === 2) {
+//             const middleRow = (fromRow + toRow) / 2;
+//             const middleCol = (fromCol + toCol) / 2;
+//             if (newBoard[middleRow][middleCol] !== null && newBoard[middleRow][middleCol] !== newBoard[fromRow][fromCol]) {
+//                 // Remove the hopped piece
+//                 newBoard[middleRow][middleCol] = null;
+//                 // Increment score
+//                 // Increment player or opponent score based on who moved
+//             }
+//         }
+//         newBoard[toRow][toCol] = newBoard[fromRow][fromCol];
+//         newBoard[fromRow][fromCol] = null;
+//         setBoard(newBoard);
+//     }
+//     if (board[fromRow][fromCol] === 'player' && !isPromoted && toRow > fromRow) {
+//       return; // Player can't move backwards unless promoted
+//   }
+// };
   const movePiece = (fromRow, fromCol, toRow, toCol) => {
     let newBoard = [...board];
-    newBoard[toRow][toCol] = newBoard[fromRow][fromCol];
-    newBoard[fromRow][fromCol] = null;
-    setBoard(newBoard);
+    if (Math.abs(fromRow - toRow) === Math.abs(fromCol - toCol)) {
+        // For diagonal movement
+        if (Math.abs(fromRow - toRow) === 2) {
+            // Check for hops
+            const middleRow = (fromRow + toRow) / 2;
+            const middleCol = (fromCol + toCol) / 2;
+            if (newBoard[middleRow][middleCol] !== null && newBoard[middleRow][middleCol] !== newBoard[fromRow][fromCol]) {
+                newBoard[middleRow][middleCol] = null; // Remove the hopped piece
+                // Increment score based on the player
+                if (newBoard[fromRow][fromCol] === 'player') {
+                    setPlayerScore(playerScore + 1);
+                } else {
+                    setOpponentScore(opponentScore + 1);
+                }
+            }
+        }
+        newBoard[toRow][toCol] = newBoard[fromRow][fromCol];
+        newBoard[fromRow][fromCol] = null;
+        setBoard(newBoard);
+    }
   };
+
 
   // Render cells
   const renderCell = (row, col) => {
@@ -68,24 +122,40 @@ const Checkerboard = () => {
   };
 
   return (
-    <ImageBackground source={require('../components/images/wooden_border.jpg')} style={styles.border}>
-    <ImageBackground source={require('../components/images/wooden_texture.jpg')} style={styles.background}>
-    <View style={styles.board}>
-      {board.map((row, rowIndex) => (
-        <View key={rowIndex} style={styles.row}>
-          {row.map((_, colIndex) => renderCell(rowIndex, colIndex))}
-        </View>
+    <View style={styles.container}>
+      <View style={styles.scoreBoardTop}>
+        <OpponentScore opponentScore={opponentScore} opponentIsNPC={true} opponentProfile={opponentData} />
+      </View>
+      
+      <ImageBackground source={require('../components/images/wooden_border.jpg')} style={styles.border}>
+      <ImageBackground source={require('../components/images/wooden_texture.jpg')} style={styles.background}>
+      <View style={styles.board}>
+        {board.map((row, rowIndex) => (
+          <View key={rowIndex} style={styles.row}>
+            {row.map((_, colIndex) => renderCell(rowIndex, colIndex))}
+          </View>
 
-      ))}
+        ))}
+      </View>
+      </ImageBackground>
+      </ImageBackground>
+
+      <View style={styles.scoreBoardBottom}>
+        <PlayerScore playerScore={playerScore} playerProfile={playerData}/>
+      </View>
+      
+      
     </View>
-    </ImageBackground>
-    </ImageBackground>
   );
 };
 
 const cellSize = 45; // Adjust the cell size if needed
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 0,
+    alignItems: 'center',
+    },
   border: {
     padding: 20,// Adjust border size
     borderRadius: 8, // Adjust border radius

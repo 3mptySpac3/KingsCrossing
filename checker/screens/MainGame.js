@@ -25,22 +25,10 @@ export default function MainGame({setCurrentScreen, setDifficulty}){
                 <FontAwesome name="arrow-left" size={24} color="black" />
                 </TouchableHighlight>
                 </ImageBackground>
-            <View style={styles.scoreBoardTop}>
-                <Opponent 
-                opponentScore={0} 
-                opponentIsNPC={true} 
-                opponentProfile={opponentData}
-                />
-            </View>
             <View style={styles.board}>
                 <Checkerboard />
             </View>
-            <View style={styles.scoreBoardBottom}>
-                <User
-                playerScore={0} 
-                playerProfile={playerData}
-                />
-            </View>
+
         </View>
         </ImageBackground>
     );

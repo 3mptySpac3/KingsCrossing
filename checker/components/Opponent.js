@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
   promoted: {
     borderWidth: 2,
     borderColor: 'black',
+    backgroundImage: 'radial-gradient(blue, yellow)'
   },
 });
 
